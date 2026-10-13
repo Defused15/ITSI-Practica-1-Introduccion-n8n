@@ -1,0 +1,175 @@
+[
+  {
+    "updatedAt": "2026-10-13T18:17:25.933Z",
+    "createdAt": "2026-10-13T18:09:46.346Z",
+    "id": "Mh25FH14hJxmWW0V",
+    "name": "Practica-1-Introduccion-n8n",
+    "description": null,
+    "active": false,
+    "isArchived": false,
+    "nodes": [
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.manualTrigger",
+        "typeVersion": 1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "ac553cca-ec33-41b2-821a-982bb75927db",
+        "name": "When clicking ‘Execute workflow’"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "4cf229ab-ca73-4943-bb6c-592882cf8142",
+                "name": "mensaje",
+                "value": "Hola, mundo desde n8n",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.5,
+        "position": [
+          224,
+          0
+        ],
+        "id": "d5c6873b-97d7-418a-98fb-3badff2a289a",
+        "name": "Edit Fields"
+      },
+      {
+        "parameters": {
+          "url": "https://v2.jokeapi.dev/joke/Programming?type=single",
+          "options": {
+            "response": {
+              "response": {
+                "responseFormat": "json"
+              }
+            }
+          }
+        },
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.5,
+        "position": [
+          448,
+          0
+        ],
+        "id": "5457e031-710c-45cc-b583-b4ed7c04e96b",
+        "name": "HTTP Request"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "f1aa592a-7600-4727-a0c3-ffc5104cc315",
+                "name": "broma",
+                "value": "={{ $json.joke }}",
+                "type": "string"
+              },
+              {
+                "id": "a0498d6e-11a2-4e6e-8663-38a9f515903c",
+                "name": "categoria",
+                "value": "={{ $json.category }}",
+                "type": "string"
+              },
+              {
+                "id": "26bc9bd2-64ef-46d4-bd78-e4c3cb68f5c1",
+                "name": "identificador",
+                "value": "={{ $json.id }}",
+                "type": "number"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.5,
+        "position": [
+          672,
+          0
+        ],
+        "id": "16df52f6-5704-415b-9fca-a6c3932e98c7",
+        "name": "Edit Fields1"
+      }
+    ],
+    "connections": {
+      "When clicking ‘Execute workflow’": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Edit Fields": {
+        "main": [
+          [
+            {
+              "node": "HTTP Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "HTTP Request": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "settings": {
+      "executionOrder": "v1",
+      "binaryMode": "separate"
+    },
+    "staticData": null,
+    "meta": null,
+    "nodeGroups": [],
+    "pinData": {},
+    "versionId": "88b1e897-4d3a-47cc-9014-c8a076046d7d",
+    "activeVersionId": null,
+    "versionCounter": 27,
+    "triggerCount": 0,
+    "sourceWorkflowId": null,
+    "tags": [],
+    "shared": [
+      {
+        "updatedAt": "2026-10-13T18:09:46.348Z",
+        "createdAt": "2026-10-13T18:09:46.348Z",
+        "role": "workflow:owner",
+        "workflowId": "Mh25FH14hJxmWW0V",
+        "projectId": "MZNzJijitErUxPfo",
+        "project": {
+          "updatedAt": "2026-10-13T18:02:18.683Z",
+          "createdAt": "2026-10-13T18:00:48.298Z",
+          "id": "MZNzJijitErUxPfo",
+          "name": "Roberto Castillo <rct419@inlumine.ual.es>",
+          "type": "personal",
+          "icon": null,
+          "description": null,
+          "customTelemetryTags": [],
+          "creatorId": "7cea1b38-79a7-4d21-98e8-3fc96486ddc4"
+        }
+      }
+    ],
+    "versionMetadata": {
+      "name": null,
+      "description": null
+    }
+  }
+]
